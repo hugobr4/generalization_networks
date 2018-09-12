@@ -6,11 +6,6 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 
-
-# This is our draw() function for later
-
-
-
 def initial_variables():
     # 430-770 is the human vision spectrum in THz
     color = random.randrange(430, 771)
