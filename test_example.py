@@ -2,6 +2,7 @@
 Employing NetworkX to model stimuli response networks.
 '''
 import random
+import pytest
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -17,10 +18,7 @@ def initial_variables():
     conditioning = random.randrange(430,771)
 
     # This is the degree of "proximity" from the stimulus to the conditioned color
-    if abs(conditioning - color) < 40:
-        proximity = 1.0 - ((abs(conditioning - color) / 40)) ** 2
-    else:
-        proximity = 0.0
+    proximity = 1 - (abs(conditioning - color) / 340) ** 2
 
     return color, intensity, conditioning, proximity
 
@@ -32,7 +30,12 @@ def main():
         labels = nx.get_node_attributes(G, name="name")
         nx.draw_networkx_nodes(G, pos,
                                node_color='b',
+                               nodelist=G.nodes()[:-1],
                                alpha=0.6)
+        nx.draw_networkx_nodes(G, pos,
+                               ]
+                               nodelist=G.nodes()[-1],
+                               alpha=0.8)
 
         nx.draw_networkx_edges(G, pos, width=1.0, alpha=0.5)
         nx.draw_networkx_labels(G, pos, labels)
@@ -42,25 +45,14 @@ def main():
                   "Intensity: {}\n".format(intensity),
                   "Conditioning: {} THz\n".format(conditioning),
                   "Proximity: {}\n".format(proximity),
-                  "Behaviour: Yes\n",
-                  "Redundance: {}".format(redundance)
-                  )
-        elif 4 in G.nodes:
-            print("Summary \n",
-                  "Color: {} THz\n".format(color),
-                  "Intensity: {}\n".format(intensity),
-                  "Conditioning: {} THz\n".format(conditioning),
-                  "Proximity: {}\n".format(proximity),
-                  "Behaviour: No\n",
-                  "Redundance: {}".format(redundance)
-                  )
+                  "Behaviour: Yes")
         else:
             print("Summary \n",
                   "Color: {} THz\n".format(color),
                   "Intensity: {}\n".format(intensity),
                   "Conditioning: {} THz\n".format(conditioning),
                   "Proximity: {}\n".format(proximity),
-                  "Behaviour: No\n")
+                  "Behaviour: No")
 
         plt.show()
 
@@ -74,10 +66,9 @@ def main():
         G.add_node(3, name="brain state")  # If our little guy is too distracted
         G.add_edge(2, 3)
         if intensity > 0.4:
-            # MOTHERFUCKER redundance test
-            G.add_node(4, name="redundance test", redundance=proximity*intensity)
+            G.add_node(4, name="redundance test", weight=intensity + proximity*intensity)
             G.add_edge(3, 4)
-            redundance = nx.get_node_attributes(G, 'redundance')[4]
+            redundance = nx.get_node_attributes(G, 'weight')[4]
             if redundance >= 1:
                 G.add_node(5, name="yes")
                 G.add_node(10, name="behaviour")
@@ -106,15 +97,10 @@ def main():
     else:
         draw()
 
-    # I thought about 'brain state' meaning 'caring' about the stimulus
-    # after it has been detected. Does it have anything to do with the
-    # conditioning, though?
 
+def test():
+    assert tuple([type(i) for i in initial_variables()]) == (type(1), type(1.0), type(1), type(1.0))
 
-    # Ok, he detected the stimulus and processed it. Time for the redundance test.
-
-
-    #redundance = nx.get_node_attributes(G, 'weight')[4]
 
 if __name__ == "__main__":
     color, intensity, conditioning, proximity = initial_variables()
