@@ -7,7 +7,7 @@ def make_gauss(N, sig, mu):
 def main():
     ax = plt.figure().add_subplot(1,1,1)
     x = np.arange(-40, 40, 0.01)
-    s = np.sqrt([0.1, 0.5, 1])
+    s = np.array([0.3, 0.65, 1])
     m = [0, 0, 0]
     c = ['y','g','orange']
 
