@@ -16,7 +16,7 @@ def main():
         ax.plot(x, gauss, color, linewidth=2)
 
     plt.xlim(-5, 5)
-    plt.ylim(0, 2)
+    plt.ylim(0, 0.5)
     plt.legend(['0.2', '1.0', '5.0', '0.5'], loc='best')
     plt.show()
 
