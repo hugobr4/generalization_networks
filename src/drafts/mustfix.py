@@ -33,8 +33,7 @@ def main():
                                nodelist=G.nodes()[:-1],
                                alpha=0.6)
         nx.draw_networkx_nodes(G, pos,
-                               ]
-                               nodelist=G.nodes()[-1],
+                               nodelist=G.nodes()[:-1],
                                alpha=0.8)
 
         nx.draw_networkx_edges(G, pos, width=1.0, alpha=0.5)
