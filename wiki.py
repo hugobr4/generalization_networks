@@ -12,7 +12,7 @@ def main():
     c = ['b','r','y','g']
 
     for sig, mu, color in zip(s, m, c):
-        gauss = make_gauss(1, sig, mu)(x)
+        gauss = make_gauss(sig, sig, mu)(x)
         ax.plot(x, gauss, color, linewidth=2)
 
     plt.xlim(-5, 5)

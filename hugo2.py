@@ -2,6 +2,7 @@
 Employing NetworkX to model stimuli response networks.
 '''
 import random
+import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -14,14 +15,6 @@ def initial_variables():
     # We want a variable for the intensity of the conditioning
     c_intensity = random.uniform(1.0, 1.5)
 
-    # We will derive two coefficients from the conditioning_intensity
-    # Sensibility will range from 1.0 to 1.2
-    #sensi = 1.2
-    sensi = 0.9 + c_intensity/10
-    # Valence will range from 1.0 to 1.5
-    #valence = 1.5
-    valence = 0.9 + c_intensity/10
-
     # This is the color for which our subject is conditioned
     c_color = random.randrange(color-40, color+40)
 
@@ -31,7 +24,7 @@ def initial_variables():
     else:
         proximity = 0.0
 
-    return color, c_intensity, sensi, valence, c_color, proximity
+    return color, c_intensity, c_color, proximity
 
 
 def main():
@@ -46,7 +39,8 @@ def main():
 
         nx.draw_networkx_edges(G, pos, width=1.0, alpha=0.5)
         nx.draw_networkx_labels(G, pos, labels)
-        print("Summary \n",
+        print(
+              "Summary \n",
               "Color: {} THz\n".format(color),
               "Condition Intensity: {}\n".format(c_intensity),
               "Sensibility: {}\n".format(sensi),
