@@ -2,27 +2,37 @@
 Employing NetworkX to model stimuli response networks.
 '''
 import random
+import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
+def make_gauss(N, sig, mu):
+    return lambda x: N/(sig * (2*np.pi)**.5) * np.e ** (-(x-mu)**2/(2 * sig**2))
+
+x = np.arange(-40, 40, 0.01)
+n = np.array([np.mean(xrange)])
+sig = np.array([np.std(xrange)])
+mu = 0.0
+
+gauss = make_gauss(n, sig, mu)(x)
 
 def initial_variables():
     # 430-770 is the human vision spectrum in THz
     color = random.randrange(430, 771)
 
-    # We want a variable for the intensity of the stimulus
-    intensity = random.uniform(0.0, 1.5)
+    # We want a variable for the intensity of the conditioning
+    c_intensity = random.uniform(0.0, 1.5)
 
     # This is the color for which our subject is conditioned
     conditioning = random.randrange(430,771)
 
     # This is the degree of "proximity" from the stimulus to the conditioned color
     if abs(conditioning - color) < 40:
-        proximity = 1.0 - ((abs(conditioning - color) / 40)) ** 2
+        proximity = 1.0 - ((abs(conditioning - color) / 40))
     else:
         proximity = 0.0
 
-    return color, intensity, conditioning, proximity
+    return color, c_intensity, conditioning, proximity
 
 def main():
     G = nx.DiGraph()
@@ -39,7 +49,7 @@ def main():
         if 10 in G.nodes:
             print("Summary \n",
                   "Color: {} THz\n".format(color),
-                  "Intensity: {}\n".format(intensity),
+                  "Intensity: {}\n".format(c_intensity),
                   "Conditioning: {} THz\n".format(conditioning),
                   "Proximity: {}\n".format(proximity),
                   "Behaviour: Yes\n",
@@ -48,7 +58,7 @@ def main():
         elif 4 in G.nodes:
             print("Summary \n",
                   "Color: {} THz\n".format(color),
-                  "Intensity: {}\n".format(intensity),
+                  "Intensity: {}\n".format(c_intensity),
                   "Conditioning: {} THz\n".format(conditioning),
                   "Proximity: {}\n".format(proximity),
                   "Behaviour: No\n",
@@ -57,7 +67,7 @@ def main():
         else:
             print("Summary \n",
                   "Color: {} THz\n".format(color),
-                  "Intensity: {}\n".format(intensity),
+                  "Intensity: {}\n".format(c_intensity),
                   "Conditioning: {} THz\n".format(conditioning),
                   "Proximity: {}\n".format(proximity),
                   "Behaviour: No\n")

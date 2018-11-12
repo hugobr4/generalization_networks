@@ -18,11 +18,11 @@ def main():
     i = intesity of conditioning. Will modify our mean
     '''
 
-    x = np.arange(-40, 40, 0.01)
+    x = np.arange(-50, 50, 0.01)
     s = np.array([15] * 3)
     m = [0, 0, 0]
     c = ['y', 'g', 'orange']
-    i = (2.5, 3.0, 3.5)
+    i = (1.0, 1.5, 2.0)
     n = s * i
 
     for n, sig, mu, color in zip(n, s, m, c):
