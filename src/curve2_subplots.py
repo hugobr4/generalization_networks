@@ -10,9 +10,7 @@ def make_gauss(N, sig, mu):
 
 
 def main():
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    plt.grid(alpha=0.5, linestyle = '--')
+    fig, (ax1, ax2, ax3) = plt.subplots(ncols=3, sharex=True)
     '''
     x is the x axis limits, regarding the color spectrum
     s = Std dev, will be our conditioning coefficient
@@ -25,14 +23,19 @@ def main():
     n = s * (2.5, 3.0, 3.5)
     #import pdb; pdb.set_trace()
 
-    for n, sig, mu, color in zip(n, s, m, c):
-        gauss = make_gauss(n, sig, mu)(x)
-        ax.plot(x, gauss, color, linewidth=2)
+    gauss = make_gauss(n[0], s[0], m[0])(x)
+    ax1.plot(x, gauss, c[0], linewidth=2)
+    gauss = make_gauss(n[1], s[1], m[1])(x)
+    ax2.plot(x, gauss, c[1], linewidth=2)
+    gauss = make_gauss(n[2], s[2], m[2])(x)
+    ax3.plot(x, gauss, c[2], linewidth=2)
 
     plt.legend([f'Weak',
                 f'Medium',
                 f'Strong'],
                 loc='best')
+
+    ax1
 
     plt.xlabel("∆ nm")
     plt.ylabel("Response degree")
