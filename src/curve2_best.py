@@ -20,8 +20,8 @@ def main():
     i = intesity of conditioning. Will modify our mean
     '''
     x = np.arange(-40, 40, 0.01)
-    s = np.array([10, 10, 10])
-    m = [0, 0, 0]
+    s = np.array([15] * 3)
+    m = [-10, 0, 10]
     c = ['y', 'g', 'orange']
     i = (2.5, 3.0, 3.5)
     n = s * i
