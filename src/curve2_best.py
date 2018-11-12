@@ -1,8 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-"""
-TODO: refactor as curve3
-"""
 
 
 def make_gauss(N, sig, mu):
@@ -13,12 +10,14 @@ def main():
     fig = plt.figure()
     ax = fig.add_subplot(111)
     plt.grid(alpha=0.5, linestyle='--')
+
     '''
     x is the x axis limits, regarding the color spectrum
     s = Std dev, will be our conditioning coefficient
     n = mean which will be our max value
     i = intesity of conditioning. Will modify our mean
     '''
+
     x = np.arange(-40, 40, 0.01)
     s = np.array([15] * 3)
     m = [0, 0, 0]
@@ -39,6 +38,7 @@ def main():
     plt.ylabel("Response degree")
 
     plt.show()
+
 
 if __name__ == '__main__':
    main()
