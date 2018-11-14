@@ -37,6 +37,8 @@ def main():
     plt.xlabel("∆ nm")
     plt.ylabel("Response degree")
 
+    plt.title("Gaussian fit for distribution")
+
     plt.show()
 
 
