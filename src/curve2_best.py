@@ -19,10 +19,10 @@ def main():
     '''
 
     x = np.arange(-50, 50, 0.01)
-    s = np.array([15] * 3)
     m = [0, 0, 0]
     c = ['y', 'g', 'orange']
-    i = (1.0, 1.5, 2.0)
+    i = np.array([0.28, 0.43, 0.63])* 10
+    s = i * 2
     n = s * i
 
     for n, sig, mu, color in zip(n, s, m, c):
