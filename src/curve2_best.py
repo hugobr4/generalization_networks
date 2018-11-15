@@ -21,11 +21,11 @@ def main():
     x = np.arange(-50, 50, 0.01)
     m = [0, 0, 0]
     c = ['y', 'g', 'orange']
-    s = np.sqrt([14, 14, 14])
+    i = np.sqrt([14, 14, 14])
     s = i * 2
     n = s * i
 
-    import pdb; pdb.set_trace()
+
     for n, sig, mu, color in zip(n, s, m, c):
         gauss = make_gauss(n, sig, mu)(x)
         ax.plot(x, gauss, color, linewidth=3)
