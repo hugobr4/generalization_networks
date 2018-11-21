@@ -9,7 +9,7 @@ able to protect themselves from threat-associated stimuli.
 
 This is a work in progress on employing neural networks and machine learning to
 simulate animal behavioural generalization experiments. We are happy to annouce
-our preliminary work will be presented at the [XXXVI Brazilian Etology Meeting.](https://eae2018.ufop.br/)
+our preliminary work will be presented at the [XXXVI Brazilian Ethology Meeting.](https://eae2018.ufop.br/)
 
 
 ```
